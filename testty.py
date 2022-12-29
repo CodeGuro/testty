@@ -84,7 +84,7 @@ if __name__ == '__main__':
             buff = read_pipe.readline()
             print (f'child written: {buff}')
         print (f'closing pseudo terminal master fd')
-        os.close(master_fd)
+        os.close(master_fd)  # the ctty slave part (and descendants of ctty process) shall recieve SIGHUP
         while buff := read_pipe.readline():
             print (f'child written: {buff}')
         for i in range(5, 0, -1):
